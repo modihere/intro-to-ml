@@ -21,12 +21,12 @@ def plotting_heatmap():
 def plotting_images():
 	plt.figure(figsize=(10,10))
 	for i in range(25):
-	    plt.subplot(5,5,i+1)
-	    plt.xticks([])
-	    plt.yticks([])
-	    plt.grid(False)
-	    plt.imshow(train_images[i], cmap=plt.cm.binary)
-	    plt.xlabel(class_names[train_labels[i]])
+		plt.subplot(5,5,i+1)
+		plt.xticks([])
+		plt.yticks([])
+		plt.grid(False)
+		plt.imshow(train_images[i], cmap=plt.cm.binary)
+		plt.xlabel(class_names[train_labels[i]])
 	plt.show()
 def neural_model():
 	model = keras.Sequential([
@@ -44,4 +44,4 @@ def neural_model():
 	print(np.argmax(predictions[1]))
 	print(test_labels[1])
 neural_model()
-#plotting_images()
+plotting_images()
