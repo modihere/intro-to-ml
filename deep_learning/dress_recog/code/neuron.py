@@ -11,6 +11,7 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 
 print(train_images.shape)
 print(train_labels,"\n",len(train_labels))
 train_images = train_images / 255.0
+
 test_images = test_images / 255.0
 def plotting_heatmap():
 	plt.figure()
@@ -31,12 +32,12 @@ def plotting_images():
 def neural_model():
 	model = keras.Sequential([
 			keras.layers.Flatten(input_shape=(28,28)),
-			keras.layers.Dense(128, activation=tf.nn.relu),
-			keras.layers.Dense(128, activation=tf.nn.relu),
+			keras.layers.Dense(180, activation=tf.nn.relu),
+			keras.layers.Dense(180, activation=tf.nn.relu),
 			keras.layers.Dense(10, activation=tf.nn.softmax)])
 	model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
 					metrics=['accuracy'])
-	model.fit(train_images, train_labels, epochs=5)
+	model.fit(train_images, train_labels, epochs=8)
 	test_loss, test_acc = model.evaluate(test_images, test_labels)
 	print ('Test accuracy :', test_acc)
 	predictions = model.predict(test_images)
