@@ -5,3 +5,4 @@ pandas
 keras
 seaborn
 scikit-learn
+PyMySql
