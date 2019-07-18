@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import seaborn as sns
+#import seaborn as sns
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -12,7 +12,7 @@ from keras.optimizers import RMSprop
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ReduceLROnPlateau
 
-sns.set(style='white', context='notebook', palette='deep')
+#sns.set(style='white', context='notebook', palette='deep')
 
 #step 1: load data
 
@@ -22,8 +22,8 @@ test = pd.read_csv('../data/digit_test.csv')
 y_train = train["label"]
 print(y_train)
 x_train = train.drop(labels=["label"], axis=1)
-g = sns.countplot(y_train)
-plt.show()
+# g = sns.countplot(y_train)
+# plt.show()
 print(y_train.value_counts())
 
 #step2: check for null and missing values
@@ -73,7 +73,7 @@ model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['ac
 #step8: setting learning rate and epochs
 
 learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc', patience=3, verbose=1, factor=0.5, min_lr=0.00001)
-epochs = 5
+epochs = 20
 batch_size = 84
 
 #step 8: data augmentation to prevent the problem of overfitting
