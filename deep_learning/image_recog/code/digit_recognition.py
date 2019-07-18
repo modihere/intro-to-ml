@@ -1,4 +1,5 @@
 import pandas as pd
+import time
 import numpy as np
 #import seaborn as sns
 from sklearn.model_selection import train_test_split
@@ -13,6 +14,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ReduceLROnPlateau
 
 #sns.set(style='white', context='notebook', palette='deep')
+
+tic = time.time()
 
 #step 1: load data
 
@@ -80,7 +83,11 @@ batch_size = 84
 
 #starting with without data augmentation
 
-history = model.fit(x_train,y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_val,y_val), verbose=2)
+history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_val,y_val), verbose=2)
 
 #here the code for data augmentation using ImageDataGenrator will be added
+
+tac = time.time()
+
+print("total time taken is", (tac-tic)/60)
 
