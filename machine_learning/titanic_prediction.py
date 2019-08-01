@@ -1,7 +1,7 @@
-'''
+"""
 https://www.kaggle.com/startupsci/titanic-data-science-solutions
 for reference
-'''
+"""
 
 
 # importing for data wrangling
@@ -79,7 +79,7 @@ for dataset in combine:
     dataset['Embarked'] = dataset.Embarked.fillna(freq_port)
 
 for dataset in combine:
-    dataset['Embarked'] = dataset['Embarked'].map( {'S': 0, 'C': 1, 'Q': 2} ).astype(int)
+    dataset['Embarked'] = dataset['Embarked'].map({'S': 0, 'C': 1, 'Q': 2}).astype(int)
 
 for dataset in combine:
     dataset['Fare'] = dataset.Fare.fillna(35)
@@ -97,6 +97,7 @@ x_test = test_df.drop('PassengerId', axis=1).copy()
 print(x_train.describe(), '\n', y_train.describe(), '\n', x_test.describe())
 # train_x, val_x, train_y, val_y = train_test_split(x_train, y_train, test_size=0.18, shuffle=True, random_state=random_seed)
 # print(train_x.shape, val_x.shape, train_y.shape, val_y.shape)
+
 #modelling finally phew!!
 
 decision_tree = DecisionTreeClassifier(max_depth=6)

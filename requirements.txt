@@ -6,3 +6,4 @@ keras
 seaborn
 scikit-learn
 PyMySql
+pyOCR
