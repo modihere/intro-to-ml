@@ -7,4 +7,5 @@ seaborn
 scikit-learn
 PyMySql
 pyOCR
+pytesseract
 opencv-python
