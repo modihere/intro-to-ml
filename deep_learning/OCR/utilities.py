@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+import pytesseract
+from pytesseract import Output
 import matplotlib.pyplot as plt
 
 
@@ -49,18 +51,29 @@ class ImageProcessing:
         cv2.imshow("Rotated", rotated)
         cv2.waitKey(0)
 
-    def draw_roi(self):
+    def find_contours(self):
         # gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
-        # gray_image = self.image
-        gray_image = cv2.bitwise_not(self.image)
+        gray_image = self.image
+        # gray_image = cv2.bitwise_not(self.image)
         thresh = self.thresholding(gray_image, 1)
         edges = cv2.Canny(thresh, 200, 210)
         contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        self.image = cv2.drawContours(gray_image, contours, -1, (255, 255, 0), 1)
-        cv2.imshow("contours", self.image)
+        gray_image = cv2.drawContours(gray_image, contours, -1, (255, 255, 220), 1)
+        cv2.imshow("contours", gray_image)
         cv2.waitKey(0)
         # plt.imshow(edges)
         # plt.show()
+
+    def draw_roi(self):
+        d = pytesseract.image_to_data(self.image, output_type=Output.DICT)
+        n_boxes = len(d['level'])
+        # print(d['level'], d['left'])
+        for i in range(n_boxes):
+            (x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
+            cv2.rectangle(self.image, (x, y), (x + w, y + h), (0, 255, 0), 1)
+
+        cv2.imshow('img', self.image)
+        cv2.waitKey(0)
 
 
 if __name__ == '__main__':
@@ -68,4 +81,5 @@ if __name__ == '__main__':
     Image = cv2.imread(image_list[1], 0)
     processing = ImageProcessing(Image)
     processing.straighten_image()
+    processing.find_contours()
     processing.draw_roi()
