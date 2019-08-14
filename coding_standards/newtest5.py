@@ -1,16 +1,29 @@
-#creating a custom exception to check whether the person will be allowed in mtech or not
-
-class AgeException(Exception):
+class Error(Exception):
+    """Base class for other exceptions"""
     pass
 
-def input_age(age):
-    try:
-        if (int(age)<25):
-            raise AgeException
-    except ValueError as e:
-        return(e)
-    else:
-        return ("Can be admitted")
-print(input_age('18'))
-print(input_age('26'))
 
+class ValueTooSmallError(Error):
+    """Raised when the input value is too small"""
+    pass
+
+
+class ValueTooLargeError(Error):
+    """Raised when the input value is too large"""
+    pass
+
+
+number = 10
+while True:
+    try:
+        i_num = int(input("Enter a number: "))
+        if i_num < number:
+            raise ValueTooSmallError
+        elif i_num > number:
+            raise ValueTooLargeError
+        break
+    except ValueTooSmallError:
+        print("This value is too small, try again!\n")
+    except ValueTooLargeError:
+        print("This value is too large, try again!\n")
+print("Congratulations! You guessed it correctly.")
