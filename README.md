@@ -4,7 +4,4 @@
 
 *Created and implemented (copied at times :P) by Vivek Modi*
 
----
-
-### Switching from GitHub -> BitBucket. Phew! Things you to for work :P
 
